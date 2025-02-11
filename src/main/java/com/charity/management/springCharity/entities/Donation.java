@@ -2,12 +2,8 @@ package com.charity.management.springCharity.entities;
 
 import jakarta.persistence.*;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
-@Setter
-@Getter
 @Entity
 @Builder
 @ToString
@@ -52,7 +48,7 @@ public class Donation {
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
-    @Column(name = "donation", unique = true)
+    @Column(name = "donation")
     private int amount;
     @ManyToOne
     @JoinColumn(name = "donor_id")

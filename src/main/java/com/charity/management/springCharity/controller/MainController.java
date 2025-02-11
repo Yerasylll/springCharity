@@ -3,10 +3,9 @@ package com.charity.management.springCharity.controller;
 import com.charity.management.springCharity.entities.Charity;
 import com.charity.management.springCharity.entities.Donation;
 import com.charity.management.springCharity.entities.Donor;
-import com.charity.management.springCharity.repositories.CharityRepo;
-import com.charity.management.springCharity.repositories.DonationRepo;
-import com.charity.management.springCharity.repositories.DonorRepo;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.charity.management.springCharity.repositories.CharityRepository;
+import com.charity.management.springCharity.repositories.DonationRepository;
+import com.charity.management.springCharity.repositories.DonorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +21,15 @@ import java.util.Optional;
 public class MainController {
 
     @Autowired
-    private final DonorRepo donorRepo;
-    private final DonationRepo donationRepo;
-    private final CharityRepo charityRepo;
-    private ObjectMapper objectMapper;
+    private final DonorRepository donorRepository;
+    private final DonationRepository donationRepository;
+    private final CharityRepository charityRepository;
 
     // CHARITY
     @PostMapping("/charity/add")
     public String addCharity(@RequestBody Charity charity) {
         try {
-            charityRepo.save(charity);
+            charityRepository.save(charity);
             return "Charity added successfully!";
         } catch (Exception e) {
             return "Error: " + e.getMessage();
@@ -40,18 +38,18 @@ public class MainController {
 
     @GetMapping("/charity/all")
     public List<Charity> getAllCharities() {
-        return charityRepo.findAll();
+        return charityRepository.findAll();
     }
 
     @GetMapping("/charity")
     public Optional<Charity> getCharity(@RequestParam int id) {
-        return charityRepo.findById(id);
+        return charityRepository.findById(id);
     }
 
     @DeleteMapping("/charity")
     public String deleteCharity(@RequestParam int id) {
-        if (charityRepo.existsById(id)) {
-            charityRepo.deleteById(id);
+        if (charityRepository.existsById(id)) {
+            charityRepository.deleteById(id);
             return "Charity deleted successfully!";
         }
         return "Charity not found!";
@@ -59,10 +57,10 @@ public class MainController {
 
     @PutMapping("/charity/update")
     public String updateCharity(@RequestBody Charity charity) {
-        if(!charityRepo.existsById(charity.getId())) {
+        if(!charityRepository.existsById(charity.getId())) {
             return "Charity not found!";
         }
-        charityRepo.save(charity);
+        charityRepository.save(charity);
         return "Charity updated successfully!";
     }
 
@@ -70,7 +68,7 @@ public class MainController {
     @PostMapping("/donation/add")
     public String addDonation(@RequestBody Donation donation) {
         try {
-            donationRepo.save(donation);
+            donationRepository.save(donation);
             return "Donation added successfully!";
         } catch (Exception e) {
             return "Error: " + e.getMessage();
@@ -79,18 +77,18 @@ public class MainController {
 
     @GetMapping("/donation/all")
     public List<Donation> getAllDonation() {
-        return donationRepo.findAll();
+        return donationRepository.findAll();
     }
 
     @GetMapping("/donation")
     public Optional<Donation> getDonation(@RequestParam int id) {
-        return donationRepo.findById(id);
+        return donationRepository.findById(id);
     }
 
     @DeleteMapping("/donation")
     public String deleteDonation(@RequestParam int id) {
-        if (donationRepo.existsById(id)) {
-            donationRepo.deleteById(id);
+        if (donationRepository.existsById(id)) {
+            donationRepository.deleteById(id);
             return "Donation deleted successfully!";
         }
         return "Donation not found!";
@@ -98,10 +96,10 @@ public class MainController {
 
     @PutMapping("/donation/update")
     public String updateDonation(@RequestBody Donation donation) {
-        if(!donationRepo.existsById(donation.getId())) {
+        if(!donationRepository.existsById(donation.getId())) {
             return "Donation not found!";
         }
-        donationRepo.save(donation);
+        donationRepository.save(donation);
         return "Donation updated successfully!";
     }
 
@@ -109,7 +107,7 @@ public class MainController {
     @PostMapping("/donor/add")
     public String addDonor(@RequestBody Donor donor) {
         try {
-            donorRepo.save(donor);
+            donorRepository.save(donor);
             return "Donor added successfully!";
         } catch (Exception e) {
             return "Error: " + e.getMessage();
@@ -118,18 +116,18 @@ public class MainController {
 
     @GetMapping("/donor/all")
     public List<Donor> getAllDonor() {
-        return donorRepo.findAll();
+        return donorRepository.findAll();
     }
 
     @GetMapping("/donor")
     public Optional<Donor> getDonor(@RequestParam int id) {
-        return donorRepo.findById(id);
+        return donorRepository.findById(id);
     }
 
     @DeleteMapping("/donor")
     public String deleteDonor(@RequestParam int id) {
-        if (donorRepo.existsById(id)) {
-            donorRepo.deleteById(id);
+        if (donorRepository.existsById(id)) {
+            donorRepository.deleteById(id);
             return "Donor deleted successfully!";
         }
         return "Donor not found!";
@@ -137,10 +135,10 @@ public class MainController {
 
     @PutMapping("/donor/update")
     public String updateDonor(@RequestBody Donor donor) {
-        if (!donorRepo.existsById(donor.getId())) {
+        if (!donorRepository.existsById(donor.getId())) {
             return "Donor not found!";
         }
-        donorRepo.save(donor);
+        donorRepository.save(donor);
         return "Donor updated successfully!";
     }
 }

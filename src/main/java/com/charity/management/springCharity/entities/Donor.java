@@ -3,20 +3,20 @@ package com.charity.management.springCharity.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Setter
-@Getter
 @Entity
+@Getter
 @Builder
 @ToString
 @Table(name = "donor")
 public class Donor {
 
-    public Donor(int id, String firstName, String lastName, String countryName, int age) {
+    public Donor(int id, String firstName, String lastName, String countryName, int age, Charity charity) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.countryName = countryName;
         this.age = age;
+        this.charity = charity;
     }
 
     public Donor() {}
@@ -61,6 +61,13 @@ public class Donor {
         this.age = age;
     }
 
+    public Charity getCharity() {
+        return charity;
+    }
+    public void setCharity(Charity charity) {
+        this.charity = charity;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
@@ -71,6 +78,9 @@ public class Donor {
     private String lastName;
     private String countryName;
     private int age;
+    @ManyToOne
+    @JoinColumn(name = "member_of_charity")
+    private Charity charity;
 
     @Override
     public String toString() {
@@ -79,6 +89,7 @@ public class Donor {
                 ", firstName=" + firstName +
                 ", lastName=" + lastName +
                 ", countryName=" + countryName +
+                ", charity=" + charity +
                 ", age=" + age +
                 '}';
     }

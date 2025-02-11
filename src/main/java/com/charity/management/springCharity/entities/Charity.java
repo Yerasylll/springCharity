@@ -2,15 +2,13 @@ package com.charity.management.springCharity.entities;
 
 import jakarta.persistence.*;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Setter
+
+
 @Getter
 @Entity
 @Builder
-@ToString
 @Table(name = "charity")
 public class Charity {
 

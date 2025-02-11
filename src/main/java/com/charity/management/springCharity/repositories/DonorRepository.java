@@ -1,10 +1,9 @@
 package com.charity.management.springCharity.repositories;
 
-import com.charity.management.springCharity.entities.Donation;
+import com.charity.management.springCharity.entities.Donor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DonationRepo extends JpaRepository<Donation, Integer> {
-
+public interface DonorRepository extends JpaRepository<Donor, Integer> {
 }
