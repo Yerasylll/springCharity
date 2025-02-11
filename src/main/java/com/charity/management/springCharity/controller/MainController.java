@@ -77,7 +77,7 @@ public class MainController {
         }
     }
 
-    @GetMapping("/movie/all")
+    @GetMapping("/donation/all")
     public List<Donation> getAllDonation() {
         return donationRepo.findAll();
     }
